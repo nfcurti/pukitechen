@@ -213,6 +213,7 @@
   const button = document.getElementById('connect')
   button.addEventListener('pointerup', function(event) {
      navigator.bluetooth.requestDevice({
+      acceptAllDevices: true,
     filters: [{
       services: ['ba42561b-b1d2-440a-8d04-0cefb43faece']
     }]
