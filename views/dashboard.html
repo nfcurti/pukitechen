@@ -221,6 +221,7 @@
     device.gatt.connect();
   })
   .then(server => {
+    console.log(server)
     return server.getPrimaryService('4fafc201-1fb5-459e-8fcc-c5c9c331914b');
   })
   .then(service => {
