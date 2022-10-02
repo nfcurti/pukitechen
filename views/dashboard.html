@@ -217,8 +217,7 @@
   })
   .then(device => {
     bluetoothDevice = device;
-    console.log(device.name);
-    console.log(device.uuids);
+    console.log(device);
     device.connectGATT();
   })
   .then(server => {
