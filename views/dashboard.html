@@ -241,16 +241,20 @@
     console.log(service)
     return service.getCharacteristic('beb5483e-36e1-4688-b7f5-ea07361b26a8');
   })
-  .then(characteristic => {
-    console.log(characteristic)return myCharacteristic.startNotifications().then(_ => {
-      log('> Notifications started');
-      myCharacteristic.addEventListener('characteristicvaluechanged',
-          handleNotifications);
-    });
-  })
-  .catch(error => { 
-    console.log("error:- " + error); 
-  });
+.then(characteristic => characteristic.startNotifications())
+.then(characteristic => {
+  characteristic.addEventListener('characteristicvaluechanged',
+                                  handleCharacteristicValueChanged);
+  console.log('Notifications have been started.');
+})
+.catch(error => { console.log(error); });
+
+function handleCharacteristicValueChanged(event) {
+  var value = event.target.value;
+  console.log('Received ' + value);
+  // TODO: Parse Heart Rate Measurement value.
+  // See https://github.com/WebBluetoothCG/demos/blob/gh-pages/heart-rate-sensor/heartRateSensor.js
+}
       });
 </script>
 </body>
