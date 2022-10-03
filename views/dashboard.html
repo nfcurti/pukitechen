@@ -241,21 +241,31 @@
     console.log(service)
     return service.getCharacteristic('beb5483e-36e1-4688-b7f5-ea07361b26a8');
   })
-.then(characteristic => characteristic.startNotifications())
-.then(characteristic => {
-  characteristic.addEventListener('characteristicvaluechanged',
-                                  handleCharacteristicValueChanged);
-  console.log('Notifications have been started.');
-})
-.catch(error => { console.log(error); });
+  .then(characteristic => characteristic.startNotifications())
+  .then(characteristic => {
+    characteristic.addEventListener('characteristicvaluechanged',
+                                    handleCharacteristicValueChanged);
+    console.log('Notifications have been started.');
+  })
+  .catch(error => { console.log(error); });
 
-function handleCharacteristicValueChanged(event) {
-  var value = event.target.value;
-  console.log('Received ' + value);
-  // TODO: Parse Heart Rate Measurement value.
-  // See https://github.com/WebBluetoothCG/demos/blob/gh-pages/heart-rate-sensor/heartRateSensor.js
-}
-      });
+  function handleCharacteristicValueChanged(event) {
+    var value = event.target.value;
+    console.log('Received ' + value);
+    const time = new Date();
+    var exactTime = time.getDate();
+    var url = "script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
+    fetch(url).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log(data);
+    }).catch(function() {
+      console.log("Booo");
+    });
+    // TODO: Parse Heart Rate Measurement value.
+    // See https://github.com/WebBluetoothCG/demos/blob/gh-pages/heart-rate-sensor/heartRateSensor.js
+  }
+        });
 </script>
 </body>
 </html>
