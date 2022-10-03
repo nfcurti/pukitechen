@@ -64,6 +64,7 @@
                 </button>
                 <img src="/img/introduction-visual.png" alt="Welcome" style="display: none" >
               </div>
+              <iframe class="airtable-embed" src="https://airtable.com/embed/shrDljsbJM0Vlm3rL?backgroundColor=gray" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
             </div>
           </li>
           <li class="l-section section">
@@ -230,11 +231,11 @@
     return service.getCharacteristic('beb5483e-36e1-4688-b7f5-ea07361b26a8');
   })
   .then(characteristic => {
-    console.log(characteristic)
-    return characteristic.readValue();
-  })
-  .then(value => {
-    console.log(`Value is  ${value.getUint8(0)}`);
+    console.log(characteristic)return myCharacteristic.startNotifications().then(_ => {
+      log('> Notifications started');
+      myCharacteristic.addEventListener('characteristicvaluechanged',
+          handleNotifications);
+    });
   })
   .catch(error => { 
     console.log("error:- " + error); 
