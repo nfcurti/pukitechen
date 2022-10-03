@@ -254,7 +254,7 @@
     console.log('Received ' + value);
     const time = new Date();
     var exactTime = time.getDate();
-    var url = "script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
+    var url = "https://script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
     fetch(url).then(function(response) {
       return response.json();
     }).then(function(data) {
