@@ -252,14 +252,17 @@
   function handleCharacteristicValueChanged(event) {
     var value = event.target.value;
     console.log('Received ' + value);
-    const time = new Date();
+    var time = new Date();
     var exactTime = time.getDate();
     var url = "https://script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
+      delay(1000);
       return response.json();
     }).then(function(data) {
+      delay(1000);
       console.log(data);
     }).catch(function() {
+      delay(1000);
       console.log("Booo");
     });
     // TODO: Parse Heart Rate Measurement value.
