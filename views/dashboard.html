@@ -216,7 +216,7 @@
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-  
+
   function handleNotifications(event) {
   let value = event.target.value;
   let a = [];
@@ -249,7 +249,7 @@
   .then(characteristic => characteristic.startNotifications())
   .then(characteristic => {
     characteristic.addEventListener('characteristicvaluechanged',
-                                    handleCharacteristicValueChanged);
+                                    setTimeout(handleCharacteristicValueChanged, 1000));
     console.log('Notifications have been started.');
   })
   .catch(error => { console.log(error); });
@@ -261,16 +261,10 @@
     var exactTime = time.getDate();
     var url = "https://script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
-      await sleep(2000);
-
       return response.json();
     }).then(function(data) {
-      await sleep(2000);
-
       console.log(data);
     }).catch(function(e) {
-      await sleep(2000);
-
       console.log(e);
     });
     // TODO: Parse Heart Rate Measurement value.
