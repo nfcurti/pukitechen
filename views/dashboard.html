@@ -212,6 +212,11 @@
 
 <script>
   const button = document.getElementById('connect')
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
   function handleNotifications(event) {
   let value = event.target.value;
   let a = [];
@@ -256,14 +261,17 @@
     var exactTime = time.getDate();
     var url = "https://script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
-      delay(1000);
+      await sleep(2000);
+
       return response.json();
     }).then(function(data) {
-      delay(1000);
+      await sleep(2000);
+
       console.log(data);
-    }).catch(function() {
-      delay(1000);
-      console.log("Booo");
+    }).catch(function(e) {
+      await sleep(2000);
+
+      console.log(e);
     });
     // TODO: Parse Heart Rate Measurement value.
     // See https://github.com/WebBluetoothCG/demos/blob/gh-pages/heart-rate-sensor/heartRateSensor.js
