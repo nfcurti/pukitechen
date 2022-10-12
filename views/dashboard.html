@@ -34,12 +34,12 @@
 
 <div class="perspective effect-rotate-left">
   <div class="container"><div class="outer-nav--return"></div>
-    <div id="viewport" class="l-viewport">
+    <div id="viewport" class="l-viewport" style="overflow: scroll;">
       <div class="l-wrapper">
         <header class="header">
           <a class="header--logo" href="#0">
             <img src="/img/logo.svg" alt="logo" width="50">
-            <h2 style="margin-left: 3em">Puki Technologies</h2>
+            <h2 style="margin-left: 3em">Your Dashboard</h2>
           </a>
           <button class="header--cta cta"><a href='https://twitter.com/pukitechs'>Contact Us</a></button>
           <div class="header--nav-toggle">
@@ -57,14 +57,34 @@
         <ul class="l-main-content main-content">
           <li class="l-section section section--is-active">
             <div class="intro">
-              <div class="intro--banner">
-                <h1 style="font-size: 3em">Latest Footsteps</h1>
+              <div class="intro--banner" style="position: initial;">
+
                 <button id="connect" class="cta">Connect
                   <span class="btn-background"></span>
                 </button>
-                <img src="/img/introduction-visual.png" alt="Welcome" style="display: none" >
+                <div class="footstepsData">
+                  <div>Footsteps (Session)
+                    <p>42 
+                      <span>steps</span></p>
+                  </div>
+                  <div>Footsteps (Total)
+                    <p>237 
+                      <span>steps</span></p>
+                  </div>
+                  <div>Average
+                    <p>1.986 
+                      <span>steps/day</span></p>
+                  </div>
+                  <div>Uptime
+                    <p>2 
+                      <span>days</span></p>
+                  </div>
+                </div>
+                <br>
+                <div>
+                  <canvas id="myChart" width="400" height="150"></canvas>
+                </div>
               </div>
-              <iframe class="airtable-embed" src="https://airtable.com/embed/shrDljsbJM0Vlm3rL?backgroundColor=gray" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
             </div>
           </li>
           <li class="l-section section">
@@ -206,7 +226,58 @@
     <li>Contact</li>
   </ul>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+function average(ctx) {
+  const values = ctx.chart.data.datasets[0].data;
+  return values.reduce((a, b) => a + b, 0) / values.length;
+}
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['1/10/2022', '2/10/2022', '3/10/2022', '4/10/2022', '5/10/2022', '6/10/2022'],
+        datasets: [{
+            label: '# of steps',
+            data: [12, 19, 13, 15, 21, 13],
+            backgroundColor: [
+                'rgba(15,51,255,0.5)'
+            ],
+            borderColor: [
+                'rgba(15,51,255,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    },
+    plugins: {
+      annotation: {
+        annotations: {
+          type: 'line',
+          borderColor: 'white',
+          borderDash: [6, 6],
+          borderDashOffset: 0,
+          borderWidth: 3,
+          label: {
+            enabled: true,
+            content: (ctx) => 'Average: ' + average(ctx).toFixed(2),
+            position: 'end'
+          },
+          scaleID: 'y',
+          value: (ctx) => average(ctx)
 
+                }
+      }
+    }
+
+});
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 
