@@ -341,11 +341,12 @@ const myChart = new Chart(ctx, {
     console.log(buffer);
 
     var time = Date.now();
+    var timestamp = time.getUTCHours()+time.getUTCMinutes()+time.getUTCSeconds()
 
 
 
 
-    if (!buffer.includes(time)) {
+    if (!buffer.includes(timestamp)) {
       console.log(buffer)
        var url = "https://script.google.com/macros/s/AKfycbxCpCi08Og8DPEf3QDuRQWX78xeqiM4JCsuEwycIDdkx-5t1vXb966Qy6aXcBArB6_m/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
         fetch(url, {mode:"no-cors"}).then(function(response) {
@@ -353,7 +354,7 @@ const myChart = new Chart(ctx, {
         }).catch(function(e) {
           console.log(e);
         });
-      buffer.push(time);
+      buffer.push(timestamp);
     }
   }
         });
