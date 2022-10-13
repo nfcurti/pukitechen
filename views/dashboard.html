@@ -331,7 +331,7 @@ const myChart = new Chart(ctx, {
   .then(characteristic => characteristic.startNotifications())
   .then(characteristic => {
     characteristic.addEventListener('characteristicvaluechanged',
-                                    valueUpdated);
+                                    handleCharacteristicValueChanged);
     console.log('Notifications have been started.');
   })
   .catch(error => { console.log(error); });
