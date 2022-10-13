@@ -346,14 +346,12 @@ const myChart = new Chart(ctx, {
     var time = new Date();
     var url = "https://script.google.com/macros/s/AKfycbwKuN92SvD191lLYuYH9FV9LjFYozR-P0c0yeZpKua5__XMHXZT2eSVu26HwZqmJmMg/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
-      return response.json();
+      console.log(response);
     }).then(function(data) {
       console.log(data);
     }).catch(function(e) {
       console.log(e);
     });
-    // TODO: Parse Heart Rate Measurement value.
-    // See https://github.com/WebBluetoothCG/demos/blob/gh-pages/heart-rate-sensor/heartRateSensor.js
   }
         });
 </script>
