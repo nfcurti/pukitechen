@@ -341,7 +341,7 @@ const myChart = new Chart(ctx, {
     console.log('Pushing ' + value);
     buffer.push(value)
     var time = new Date();
-    var url = "https://script.google.com/macros/s/AKfycbyJwW_zqfJg9m95dRicGv5N_tPM26frjNaUCKdGdZl0-XG4IWwaPxtXcOJqhiLV4QvZ/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
+    var url = "https://script.google.com/macros/s/AKfycbxCpCi08Og8DPEf3QDuRQWX78xeqiM4JCsuEwycIDdkx-5t1vXb966Qy6aXcBArB6_m/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
     }).then(function(data) {
     }).catch(function(e) {
