@@ -340,7 +340,7 @@ const myChart = new Chart(ctx, {
     var value = JSON.stringify(event.target.value);
     console.log(buffer);
 
-    var time = Date.now();
+    var time = new Date();
     var timestamp = time.getUTCHours()+time.getUTCMinutes()+time.getUTCSeconds()
 
 
