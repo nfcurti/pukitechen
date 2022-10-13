@@ -342,8 +342,8 @@ const myChart = new Chart(ctx, {
 
     var time = Date.now();
 
-
-    if (!buffer.includes(time)) {
+    for (let i = 0; i < buffer.length; i++) {
+      íf((time-buffer[i])>=500){
       console.log(buffer)
        var url = "https://script.google.com/macros/s/AKfycbxCpCi08Og8DPEf3QDuRQWX78xeqiM4JCsuEwycIDdkx-5t1vXb966Qy6aXcBArB6_m/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
         fetch(url, {mode:"no-cors"}).then(function(response) {
@@ -352,7 +352,10 @@ const myChart = new Chart(ctx, {
           console.log(e);
         });
       buffer.push(time);
+
+      }
     }
+
   }
         });
 </script>
