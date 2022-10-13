@@ -341,7 +341,7 @@ const myChart = new Chart(ctx, {
     console.log('Pushing ' + value);
     buffer.push(value)
 
-    var time = new Date();
+    var time = Date.now();
 
 
     if (!buffer.includes(time)) {
