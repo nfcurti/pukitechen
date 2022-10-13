@@ -340,15 +340,16 @@ const myChart = new Chart(ctx, {
     setTimeout(handleCharacteristicValueChanged, 1000);
   }
 
+  var buffer = []
+
   function handleCharacteristicValueChanged(event) {
-    var value = event.target.value;
-    console.log('Received ' + value);
+    var value = JSON.stringify(event.target.value);
+    console.log('Pushing ' + value);
+    buffer.push(value)
     var time = new Date();
     var url = "https://script.google.com/macros/s/AKfycbzYHC4sqZ0iDl0dD6pqoDtid6PT_YagLe0F9S0QXk9eW8dlVmziLTKfSu24WCmiiDFO/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
-      console.log(response);
     }).then(function(data) {
-      console.log(data);
     }).catch(function(e) {
       console.log(e);
     });
