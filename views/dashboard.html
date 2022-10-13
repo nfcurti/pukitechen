@@ -342,30 +342,19 @@ const myChart = new Chart(ctx, {
 
     var time = Date.now();
 
-    if(buffer.length>0){
-        for (let i = 0; i < buffer.length; i++) {
-          if ((time-buffer[i]) >= 500) {
-          console.log("Pushing " +(time-buffer[i]))
-           var url = "https://script.google.com/macros/s/AKfycbxCpCi08Og8DPEf3QDuRQWX78xeqiM4JCsuEwycIDdkx-5t1vXb966Qy6aXcBArB6_m/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
-            fetch(url, {mode:"no-cors"}).then(function(response) {
-            }).then(function(data) {
-            }).catch(function(e) {
-              console.log(e);
-            });
-          buffer.push(time);
-    
-          }
-        }
-      } else {
-        var url = "https://script.google.com/macros/s/AKfycbxCpCi08Og8DPEf3QDuRQWX78xeqiM4JCsuEwycIDdkx-5t1vXb966Qy6aXcBArB6_m/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
-            fetch(url, {mode:"no-cors"}).then(function(response) {
-            }).then(function(data) {
-            }).catch(function(e) {
-              console.log(e);
-            });
-          buffer.push(time);
-      }
 
+
+
+    if (!buffer.includes(time)) {
+      console.log(buffer)
+       var url = "https://script.google.com/macros/s/AKfycbxCpCi08Og8DPEf3QDuRQWX78xeqiM4JCsuEwycIDdkx-5t1vXb966Qy6aXcBArB6_m/exec?uuid="+serviceUUID+"&date="+time+"&action=step"
+        fetch(url, {mode:"no-cors"}).then(function(response) {
+        }).then(function(data) {
+        }).catch(function(e) {
+          console.log(e);
+        });
+      buffer.push(time);
+    }
   }
         });
 </script>
