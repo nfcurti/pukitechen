@@ -338,8 +338,7 @@ const myChart = new Chart(ctx, {
 
   function handleCharacteristicValueChanged(event) {
     var value = JSON.stringify(event.target.value);
-    console.log('Pushing ' + value);
-    buffer.push(value)
+    console.log(buffer);
 
     var time = Date.now();
 
