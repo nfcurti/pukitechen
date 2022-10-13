@@ -294,7 +294,7 @@ const myChart = new Chart(ctx, {
 
 <script>
   const button = document.getElementById('connect')
-
+  var serviceUUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b'
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -313,7 +313,7 @@ const myChart = new Chart(ctx, {
   button.addEventListener('pointerup', function(event) {
      navigator.bluetooth.requestDevice({
       acceptAllDevices: true,
-        optionalServices: [ "4fafc201-1fb5-459e-8fcc-c5c9c331914b" ]
+        optionalServices: [ serviceUUID ]
   })
   .then(device => {
     bluetoothDevice = device;
@@ -322,7 +322,7 @@ const myChart = new Chart(ctx, {
   })
   .then(server => {
     console.log(server)
-    return server.getPrimaryService('4fafc201-1fb5-459e-8fcc-c5c9c331914b');
+    return server.getPrimaryService(serviceUUID);
   })
   .then(service => {
     console.log(service)
@@ -345,7 +345,7 @@ const myChart = new Chart(ctx, {
     console.log('Received ' + value);
     var time = new Date();
     var exactTime = time.getDate();
-    var url = "https://script.google.com/macros/s/AKfycbyHBjZKxb8xEB4F_-zdgzuMS6N_vB0gwFACu06du5giT95z5zz5R2lKaymzJSPa-ayN/exec?date="+exactTime+"&sensor=step"
+    var url = "https://script.google.com/macros/s/AKfycbwKuN92SvD191lLYuYH9FV9LjFYozR-P0c0yeZpKua5__XMHXZT2eSVu26HwZqmJmMg/exec?uuid="+serviceUUID+"&date="+exactTime+"&action=step"
     fetch(url, {mode:"no-cors"}).then(function(response) {
       return response.json();
     }).then(function(data) {
